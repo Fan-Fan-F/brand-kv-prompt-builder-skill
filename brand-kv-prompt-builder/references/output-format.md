@@ -13,8 +13,9 @@
 
 - Chinese by default
 - Copy-pasteable as one block
-- Includes concrete values for all placeholders
-- Includes inferred brand cues
+- Replaces each retained placeholder with a concrete value
+- Uses brand cues permitted by the user, with proposed design choices for details without verified references
+- Omits fields for text, logos or slogans the user excluded
 - Ends with negative constraints
 
 ## Tone

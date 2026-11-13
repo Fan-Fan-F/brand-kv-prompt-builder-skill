@@ -13,8 +13,9 @@
 
 - Prefer 0 to 3 questions
 - Ask at most 5 questions total
-- If the brand is familiar, infer missing details
-- If the brand is unclear, ask one clarifying question first
+- If the brand name can identify several subjects, ask one question to confirm the intended subject.
+- Once the brand is clear, use supplied or verified facts and make concrete creative choices for the remaining design details.
+- Respect any explicit restrictions on copy, logo, palette, or product.
 
 ## Natural question examples
 

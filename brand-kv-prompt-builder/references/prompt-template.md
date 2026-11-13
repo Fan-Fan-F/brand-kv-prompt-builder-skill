@@ -7,31 +7,26 @@ Produce one finished prompt block for an image model.
 ## Fill rules
 
 - Keep the original structure where possible.
-- Replace placeholders with concrete brand values.
-- Merge user input with inferred brand traits.
+- Replace retained placeholders with concrete values from user input, verified references, or choices for this concept.
+- Remove optional copy or logo lines when the user excludes them. Carry those exclusions into the image constraints.
+- Use the specified hero product. Describe original packaging or identity as a design proposal when no existing reference is available.
 - Keep the result as a single copy-pasteable block.
 
 ## Master template
 
-你是一个品牌视觉识别系统、商业广告创意总监、KV海报设计师和高传播品牌视觉生成系统。
-
-请根据品牌名称“{品牌名称}”，自动识别该品牌最具代表性的Logo风格、文字识别特征、主推产品、包装材质、品牌色彩、视觉调性、目标人群与传播风格，并生成一张符合该品牌气质的概念KV海报。
+为品牌“{品牌名称}”生成一张概念 KV 海报。以下品牌名称用于描述创作主体。画面中只呈现明确指定的文字和标识。
 
 品牌名称：{品牌名称}
 主推产品：{主推产品}
-广告语：{广告语}
+画面广告语（可选）：{广告语}
+标识位置与样式（可选）：{标识方向}
 目标人群：{目标人群}
 画幅比例：{画幅比例}
 KV类型：{KV类型}
 平台用途：{平台用途}
 
 要求：
-- 品牌识别度高
-- Logo风格明显但不必一比一复刻
-- 产品必须是该品牌最具代表性的真实产品
-- 包装、材质、颜色、字体气质要符合品牌认知
-- 画面像真实商业品牌广告，不像电商促销图
-- 文字简洁，层级清晰，主视觉明确
-- 不要出现二维码、价格、活动信息、乱码Logo、错误品牌名、廉价拼贴和杂乱背景
-
-请直接输出一段可用于生图模型的完整提示词。
+- 以指定产品为主视觉，构图采用{构图}。
+- 画面使用{配色}、{材质}与{光线}。按用户提供的产品和包装参考保留关键细节。
+- 视觉层级清晰，背景简洁。允许出现文字时，仅使用给定文案。
+- 负面约束：{用户明确排除的元素}。避免二维码、价格、活动信息、乱码、廉价拼贴和杂乱背景。
