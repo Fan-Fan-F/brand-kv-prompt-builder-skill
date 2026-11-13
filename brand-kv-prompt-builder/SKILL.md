@@ -9,14 +9,14 @@ Use this skill when the user wants a brand-inspired concept KV poster prompt for
 
 ## Purpose
 
-Turn a brand name into one finished prompt block that can be pasted directly into a generator. Ask only for the missing essentials, infer the rest, and output one usable prompt.
+Turn a brand name and the user's constraints into one finished prompt block that can be pasted directly into an image generator. Ask only for missing essentials.
 
 ## Workflow
 
 1. Read the brand name and any user-provided constraints.
 2. Ask up to 3 short questions if needed.
-3. Infer the rest from brand knowledge.
-4. Assemble one final prompt block.
+3. Use supplied or verified brand facts. Make concrete creative choices for the remaining design details.
+4. Assemble one final prompt block using [the prompt template](references/prompt-template.md) when helpful.
 5. Output only the summary plus the prompt, or just the prompt if no questions were needed.
 
 ## Behavior
@@ -32,27 +32,18 @@ Turn a brand name into one finished prompt block that can be pasted directly int
 - Default target: 0 to 3 questions.
 - Hard limit: 5 questions total.
 - If the user already supplied enough context, skip questions entirely.
-- If the brand is familiar, infer the missing pieces.
-- If the brand is unclear or has multiple obvious directions, ask one clarifying question first.
+- If the brand could refer to more than one subject, ask one question to identify it before choosing brand cues.
+- Treat a user-declared new brand as a concept. Ask for a product or reference only if it is needed to proceed.
 
-## What to infer
+## Brand facts and creative choices
 
-Infer the following from the brand name when possible:
+Use this order when assembling the prompt:
 
-- industry
-- representative product
-- logo or wordmark style
-- packaging shape and material language
-- brand color palette
-- visual tone
-- audience
-- ad style
-- slogan tone
-- spatial mood and lighting
+1. Follow the user's explicit constraints, including the specified product, colors, aspect ratio, and restrictions on text, slogans, or logos.
+2. Use brand facts from the user's material or verified sources when relevant to the image.
+3. Fill open design choices with concrete values for composition, audience, tone, lighting, and materials. Present unverified visual details as proposals for this concept.
 
-If the user names a product, use that product even if another is more iconic.
-If the brand has several equally strong heroes, choose the most recognizable one.
-If the brand is not familiar, keep the prompt generic but brand-safe.
+When the user leaves the product open and the identified brand has several verified examples, choose a recognizable product. For a new or unfamiliar brand, ground the design in the supplied product and references. Invented wordmarks, packaging, and palettes belong to the concept.
 
 ## Ask only what is missing
 
@@ -86,12 +77,12 @@ When building the final prompt:
 - Keep the user's framing.
 - Replace `{品牌名称}` with the actual brand name.
 - Replace `{主推产品}` with the chosen or inferred product.
-- Replace `{广告语}` with a short original slogan if none was provided.
+- Include supplied copy if permitted. When text and slogans are permitted and the concept calls for one, write a short original slogan if none was provided.
 - Replace `{目标人群}` with the inferred or user-provided audience.
 - Replace `{画幅比例}` with the chosen ratio.
 - Replace `{KV类型}` with the chosen KV type.
 - Replace `{平台用途}` with the chosen platform.
-- Add brand cues that make the output look like a real commercial KV.
+- Add brand cues consistent with the available references and user constraints. When logos or text are excluded, use permitted cues such as product shape, composition, or color.
 - Keep negative constraints at the end.
 
 ## Strong prompt requirements
@@ -99,18 +90,16 @@ When building the final prompt:
 The assembled prompt must include:
 
 - brand recognition cues
-- logo or wordmark direction
-- main product and packaging cues
-- brand color and material language
+- main product, with packaging cues where relevant
+- color and material language
 - lighting and mood direction
 - composition guidance
-- concise ad copy or headline
+- wordmark direction or concise ad copy only when permitted and useful
 - negative constraints
 
 ## Slogan rules
 
-If no slogan is provided, generate a short original line that fits the brand.
-Prefer:
+When the poster needs an original slogan and the user permits text, prefer:
 
 - 4 to 12 Chinese characters
 - or 2 to 6 English words for English prompts
@@ -129,10 +118,7 @@ The final prompt should be:
 
 ## Fallback policy
 
-When uncertain, choose the most recognizable mass-market interpretation of the brand.
-Do not force exact logo reproduction.
-Do not invent unrelated visuals.
-Do not drift into generic poster design.
+Use the intake question for unresolved brand identity. Once the subject is clear, use a concrete concept grounded in the available references. Describe any proposed visual identity as part of this design.
 
 ## Negative constraints
 
@@ -153,8 +139,6 @@ Never produce:
 蜜雪冰城，做一个 9:16 的小红书概念 KV，主推奶茶，目标年轻潮流人群。
 
 ### Assistant
-品牌信息足够，我会直接按蜜雪冰城的视觉认知来组装提示词，保留品牌识别、奶茶主视觉、年轻感和社交传播感。
-
 [final prompt block]
 
 ### User
@@ -168,7 +152,7 @@ Never produce:
 Use this pattern:
 
 1. Ask one short question if needed.
-2. Fill in the missing brand logic.
+2. Fill in open creative choices using the user's constraints and available references.
 3. Output one clean prompt block.
 
 That is the whole job.
